@@ -1,0 +1,28 @@
+html{
+	font-family: "Tahoma";
+	margin-left: 2%;
+
+}
+#searchingForm{
+	width: 400px;
+}
+.results{
+	margin-left: 30%;
+	margin-top: -370px;
+}
+.noResults{
+	color: #212121;
+	font-size: 30px;
+}
+p,ul{
+	font-size: 30px;
+	font-weight: bold;
+}
+p{
+	margin-top: 100px;
+}
+ul>li{
+	display: inline-block;
+	margin-left: 20px;
+	margin-bottom: 30px;
+}
