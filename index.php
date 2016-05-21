@@ -5,13 +5,12 @@
 	global $db;
 
 	// Initilizing ...
-	$results = $db->get_data();
 	$filters = array('brand'=>'ProductBrandID', 'family'=>'ProductFamily', 'material'=>'ProductMaterialID', 'color'=>'ProductColorID', 'size' => 'ProductSize');
 	$filter = new Filter($filters);
 
 	// Default attributes and results;;;;;
+	$results = $db->get_data_form('products');
 	$attributes = $filter->get_attribute_unique_values();
-	$results = $db->get_data();
 	$spec_results = NULL;
 
 	// Searching...
