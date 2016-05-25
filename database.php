@@ -32,8 +32,8 @@ class Database{
 	}
 
 	/*------------------------------------------------------------------------------------------BREAK */
-	public function get_data(){
-		$sql = 'SELECT ProductBarcode FROM products';
+	public function get_data_form($table_name){
+		$sql = 'SELECT ProductBarcode FROM '.$table_name;
 		$results = self::set_query($sql);
 		return $results;
 	}
