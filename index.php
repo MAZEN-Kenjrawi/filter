@@ -4,14 +4,19 @@
 
 	global $db;
 
-	// Initilizing ...
-	$results = $db->get_data();
+	// Initilizing and CONFIGURATIONS ...
+	// COLUMNS in the table which we need to checked for getting the desiered result
 	$filters = array('brand'=>'ProductBrandID', 'family'=>'ProductFamily', 'material'=>'ProductMaterialID', 'color'=>'ProductColorID', 'size' => 'ProductSize');
-	$filter = new Filter($filters);
+	// COLUMN that we need to search in
+	$to_search_for = "ProductBarcode";
+	// THE DATABASE TABLE NAME
+	$table = "products";
+
+	$filter = new Filter($filters, $to_search_for, $table);
 
 	// Default attributes and results;;;;;
 	$attributes = $filter->get_attribute_unique_values();
-	$results = $db->get_data();
+	$results = $db->get_data($to_search_for, $table);
 	$spec_results = NULL;
 
 	// Searching...
@@ -24,6 +29,7 @@
 		if(isset($checked)){
 			$new_search_values = $filter->new_search_values($checked);
 			$spec_results = $filter->right_syntax($checked);
+			var_dump($checked);
 		}
 	}
 	// for debugging only....
@@ -73,13 +79,13 @@
 		if($spec_results === NULL){
 			$i = 0;
 			foreach($results as $result){
-				echo "<li>".$result['ProductBarcode']."</li>";
+				echo "<li>".$result[$to_search_for]."</li>";
 				$i++;
 			}
 		} else {
 			$i = 0;
 			foreach($spec_results as $result){
-				echo "<li>".$result['ProductBarcode']."</li>";
+				echo "<li>".$result[$to_search_for]."</li>";
 				$i++;
 			}
 		}
