@@ -21,7 +21,7 @@ class Filter{
 		// get all values
 		global $db;
 		foreach ($this->attributes as $key => $value){
-			$sql = "SELECT $value FROM products";
+			$sql = "SELECT $value FROM $this->table_name";
 			$attributes_values[$key] = $db->set_query($sql);
 		}
 		return $attributes_values;
