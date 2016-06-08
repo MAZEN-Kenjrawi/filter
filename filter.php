@@ -5,11 +5,15 @@ $db = new database;
 class Filter{
 
 	public $attributes;
+	public $item_to_search_in;
+	public $table_name;
 
 	/*------------------------------------------------------------------------------------------BREAK */
-	public function __construct($attr){
+	public function __construct($attr, $search_item, $table){
 		//no need for protection as long as we enterd the value, trim()..
 		$this->attributes = $attr;
+		$this->item_to_search_in = $search_item;
+		$this->table_name = $table;
 	}
 
 	/*------------------------------------------------------------------------------------------BREAK */
@@ -53,7 +57,7 @@ class Filter{
 			if($i != (count($results) - 1)){$serial_results .= " AND ";}
 			$i++;
 		}
-		$sql = "SELECT ".$serial_attributes." FROM products WHERE ".$serial_results;
+		$sql = "SELECT ".$serial_attributes." FROM $this->table_name WHERE ".$serial_results;
 
 		// for debuggning....
 		// var_dump($sql);
@@ -69,7 +73,7 @@ class Filter{
 		// generating the right MySQL syntax
 		$num = count($temp);
 		$i = 0;
-		$sql = "SELECT ProductBarcode FROM products WHERE ";
+		$sql = "SELECT $this->item_to_search_in FROM $this->table_name WHERE ";
 		if($num != 1){
 			$sql .= "(";
 		}
@@ -108,7 +112,7 @@ class Filter{
 			}
 		}
 		// just for debugging
-		//var_dump($sql);
+		// var_dump($sql);
 		global $db;
 		return $db->set_query($sql);
 	}
