@@ -29,7 +29,6 @@
 		if(isset($checked)){
 			$new_search_values = $filter->new_search_values($checked);
 			$spec_results = $filter->right_syntax($checked);
-			var_dump($checked);
 		}
 	}
 	// for debugging only....
@@ -104,10 +103,10 @@
 				//var name = that.attr('name');
 				//console.log(name, check);
 
-				var form = that.closest('form');
-				var url = form.attr('action');
-				var type = form.attr('method');
-				var data = form.serialize();
+				var form  = that.closest('form');
+				var url   = form.attr('action');
+				var type  = form.attr('method');
+				var data  = form.serialize();
 
 				$.ajax({url: url, type: type, data: data,
 					success: function(root){
